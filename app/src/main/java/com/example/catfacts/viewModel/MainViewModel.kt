@@ -54,8 +54,7 @@ class MainViewModel(context: Context) : ViewModel() {
     fun showPreviousFact() {
         viewModelScope.launch(Dispatchers.IO + exceptionHandler) {
             currentFact.value?.id?.let { currentId ->
-                val prevId = currentId - 1
-                factDao.getFactById(prevId)?.let { prevFact ->
+                factDao.getLastFact(currentId)?.let { prevFact ->
                     viewModelScope.launch(Dispatchers.Main) {
                         currentFact.value = prevFact
                     }

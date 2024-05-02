@@ -14,6 +14,6 @@ interface FactDao {
     @Query("SELECT * FROM facts WHERE id = :id")
     fun getFactById(id: Int): Fact?
 
-    @Query("SELECT * FROM facts ORDER BY id DESC LIMIT 1")
-    fun getLastFact(): Fact?
+    @Query("SELECT * FROM facts WHERE id = :id-1")
+    fun getLastFact(id: Int): Fact?
 }
